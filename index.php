@@ -20,7 +20,7 @@
             </header>
 		   <?php 
             if(isset($_POST["boton"])){
-                require_once("sen.php");
+                require_once "sen.php";
                 $obj = new usua();
                 $obj->insertar();
                 header("Location:index.php?a=s");
@@ -29,7 +29,7 @@
                 echo "<marquee BEHAVIOR=slide SCROLLAMOUNT=15 align: middle>Datos Ingresados</marquee>";
             }
             if(isset($_GET["idE"])){
-                require_once("sen.php");
+                require_once "sen.php";
                 $obj = new usua();
                 $obj->eliminar();
                 echo "<marquee BEHAVIOR=slide SCROLLAMOUNT=15 align: middle>Datos Eliminados</marquee>";
@@ -55,12 +55,12 @@
                 </div>
 	    <?php 
         if(isset($_POST["botonM"])){
-                require_once("sen.php");
+                require_once "sen.php";
                 $obj = new usua();
                 $obj->modificar();
             }
         if(isset($_GET["idM"])){
-                require_once("sen.php");
+                require_once "sen.php";
                 $obj = new usua();
                 $fila = $obj->buscar();
                 ?>
@@ -90,17 +90,17 @@
                                 <th scope="col">Apellido</th>
                                 <th></th>
                             <?php 
-                                require_once("sen.php");
+                                require_once "sen.php";
                                 $obj = new usua();
                                 $res = $obj->consultar();
+                                define("CERRAR_TD", "</td>");
                                 while($fila = $res->fetch_assoc()){
                                     $id = $fila["id"];
                                     echo "<tr>";
-                                    echo "<td>".$fila["id"]."</td>";
-                                    echo "<td>".$fila["nombre"]."</td>";
-                                    echo "<td>".$fila["apellido"]."</td>";
-                                    echo "<td><a href='index.php?idE=$id' >
-                                        <i class='fa-solid fa-trash' style='color: red;' 'align:center'></i></a>";
+                                    echo "<td>".$fila["id"].CERRAR_TD;
+                                    echo "<td>".$fila["nombre"].CERRAR_TD;
+                                    echo "<td>".$fila["apellido"].CERRAR_TD;
+                                    echo "<td><a href='index.php?idE=$id'><i class='fa-solid fa-trash' style='color: red;' 'align:center'></i></a>".CERRAR_TD;
                                     echo "</tr>";
                                 }
                              ?>
