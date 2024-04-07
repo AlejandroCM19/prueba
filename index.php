@@ -89,7 +89,6 @@
                                 <th scope="col">Nombre</th>
                                 <th scope="col">Apellido</th>
                                 <th></th>
-                                <th></th>
                             <?php 
                                 require_once("sen.php");
                                 $obj = new usua();
@@ -101,9 +100,7 @@
                                     echo "<td>".$fila["nombre"]."</td>";
                                     echo "<td>".$fila["apellido"]."</td>";
                                     echo "<td><a href='index.php?idE=$id' >
-                                        <i class='fa-solid fa-trash' style='color: red;' 'align:center'></i></a>
-                                        <td><a href='index.php?idM=$id' >
-                                        <i class='fa-solid fa-pencil'style='color: blue;' 'align:center'></i></a></td>";
+                                        <i class='fa-solid fa-trash' style='color: red;' 'align:center'></i></a>";
                                     echo "</tr>";
                                 }
                              ?>

@@ -1,34 +1,45 @@
 <?php 
-	require_once("conexion.php");
-	class usua extends Conexion{
-		public function insertar(){
-        $nom= $_POST['nombre']; 
-        $apel= $_POST['apellido'];
-			$this->sentencia="INSERT INTO usuarios VALUES (null, '$nom','$apel')";
-			echo $this->sentencia;
-			$this->ejecutarSentencia();
-		}
-		public function consultar(){
-			$this->sentencia = "SELECT * FROM usuarios";
-			return $this->obtenerSentencia();
-		}
-		public function eliminar(){
-			$id = $_GET["idE"];
-			$this->sentencia = "DELETE FROM usuarios WHERE id = $id";
-			$this->ejecutarSentencia();
-		}
-		public function buscar(){
-			$id = $_GET["idM"];
-			$this->sentencia = "SELECT * FROM usuarios WHERE id=$id";
-			$resultado = $this->obtenerSentencia();
-			$usuarios = $resultado->fetch_assoc();
-			return $usuarios;
-		}
-		public function modificar(){
-	        $nom= $_POST['nombre']; 
-        	$apel= $_POST['apellido'];
-	        $this->sentencia = "UPDATE usuarios SET nombre = '$nom', apellido = '$apel' WHERE id=".$_GET['idM'];
-			$this->ejecutarSentencia();
-		}
-	}
- ?>
+require_once("conexion.php");
+
+class usua extends Conexion {
+    public function insertar(){
+        $nom = $_POST['nombre'];
+        $apel = $_POST['apellido'];
+        $this->abrirConexion(); // Abre la conexión antes de preparar la consulta
+        $stmt = $this->conexion->prepare("INSERT INTO usuarios VALUES (null, ?, ?)");
+        $stmt->bind_param("ss", $nom, $apel);
+        $stmt->execute();
+        $this->cerrarConexion(); // Cierra la conexión después de ejecutar la consulta
+    }
+
+    public function consultar(){
+        $this->abrirConexion(); // Abre la conexión antes de preparar la consulta
+        $this->sentencia = "SELECT * FROM usuarios";
+        $result = $this->obtenerSentencia();
+        $this->cerrarConexion(); // Cierra la conexión después de obtener los resultados
+        return $result;
+    }
+
+    public function eliminar(){
+        $id = $_GET["idE"];
+        $this->abrirConexion(); // Abre la conexión antes de preparar la consulta
+        $stmt = $this->conexion->prepare("DELETE FROM usuarios WHERE id = ?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $this->cerrarConexion(); // Cierra la conexión después de ejecutar la consulta
+    }
+
+    public function buscar(){
+        $id = $_GET["idM"];
+        $this->abrirConexion(); // Abre la conexión antes de preparar la consulta
+        $stmt = $this->conexion->prepare("SELECT * FROM usuarios WHERE id = ?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $resultado = $stmt->get_result();
+        $this->cerrarConexion(); // Cierra la conexión después de obtener los resultados
+
+        $usuarios = $resultado->fetch_assoc();
+        return $usuarios;
+    }
+}
+?>
