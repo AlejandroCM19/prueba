@@ -2,8 +2,8 @@
     class Conexion{
 		//Conexion a la Base
     	public $url = "192.168.33.23";
-    	public $usuario = "user";
-    	public $password = "user";
+    	public $usuario = "alex";
+    	public $password = "123";
     	public $base = "seguridad";
     	public $conexion = null; // Inicializamos la conexión como nula
     	public $sentencia ="";
