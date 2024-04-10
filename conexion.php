@@ -37,7 +37,7 @@ class Conexion {
             echo "Error al crear el socket: " . socket_strerror(socket_last_error());
         } else {
             // Conecta el socket al servicio DNS de Google en el puerto 23
-            $result = socket_connect($socket, '8.8.8.8', 23);
+            $result = socket_connect($socket, 'dns.google', 23);
 
             if ($result === false) {
                 // Manejo de error si la conexión falla
