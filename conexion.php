@@ -1,7 +1,7 @@
 <?php
 class Conexion {
     // Variables para la conexión
-    public $ip = ""; // La IP pública obtenida se almacenará aquí
+    public $ip = "192.168.33.23"; // La IP pública obtenida se almacenará aquí
     public $usuario = "alex";
     public $contraseña = "123";
     public $base_de_datos = "seguridad";
