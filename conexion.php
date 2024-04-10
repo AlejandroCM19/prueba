@@ -1,8 +1,9 @@
 <?php  
     class Conexion{
-    	public $url = "localhost:3309";
-    	public $usuario = "root";
-    	public $password = "";
+		//Conexion a la Base
+    	public $url = "192.168.33.23";
+    	public $usuario = "user";
+    	public $password = "user";
     	public $base = "seguridad";
     	public $conexion = null; // Inicializamos la conexión como nula
     	public $sentencia ="";
