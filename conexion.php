@@ -3,7 +3,7 @@
 		//Conexion a la Base
     	public $url = "192.168.33.23";
     	public $usuario = "alex";
-    	public $password = "123";
+    	public $alexvar = "123";
     	public $base = "seguridad";
     	public $conexion = null; // Inicializamos la conexión como nula
     	public $sentencia ="";
@@ -12,7 +12,7 @@
     		$this->abrirConexion();
     	}
 		protected function abrirConexion(){
-			$this->conexion = new mysqli($this->url, $this->usuario, $this->password, $this->base);
+			$this->conexion = new mysqli($this->url, $this->usuario, $this->alexvar, $this->base);
 		}
     	// Destructor para cerrar la conexión automáticamente al destruir la instancia
     	public function __destruct() {
