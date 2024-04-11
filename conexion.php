@@ -8,7 +8,7 @@ class Conexion {
     public $conexion = null; // Inicializamos la conexión como nula
     public $sentencia = "";
 
-    // Constructor para abrir la conexión automáticamente al instanciar
+    // Constructor para abrir la conexión automáticamente al instanciar importnte
     public function __construct() {
         // Obtener la IP pública
         $this->obtenerIPPublica();
